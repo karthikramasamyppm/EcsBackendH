@@ -28,7 +28,8 @@ module.exports = {
 		},
 		getcities: function(req, res, next) {
 
-            cityModel.find().populate('stateid').exec(function(err, c) {
+			cityModel.find().populate('stateid')
+			.exec(function(err, c) {
 				if (err) { 
 					return console.log(err);
 				}
