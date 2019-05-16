@@ -1,8 +1,16 @@
 const express = require('express');
 const logger = require('morgan');
+
 const users = require('./routes/users');
+
+//For users signup
+const country = require('./routes/country');
+const state = require('./routes/state');
+const city = require('./routes/city');
+
 const category = require('./routes/category');
 const brand = require('./routes/brand');
+
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
@@ -43,7 +51,12 @@ app.use('/users', users);
 
 app.use('/category',category);
 
-app.use('/brand',brand)
+app.use('/brand',brand);
+
+
+app.use('/country',country);
+app.use('/state',state);
+app.use('/city',city);
 
 
 app.get('/favicon.ico', function(req, res) {
