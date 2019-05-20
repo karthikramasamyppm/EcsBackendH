@@ -35,7 +35,7 @@ const upload = multer({
 router.post('/', upload.single('file'),itemController.create);
 router.get('/', itemController.getAll);
 router.get('/getitems', itemController.getitems);
-
-
+router.post('/:itemid', itemController.updateById);
+router.delete('/:itemid', itemController.deleteById);
 
 module.exports = router;

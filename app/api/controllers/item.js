@@ -26,6 +26,26 @@ module.exports = {
 
 		});
     },
+    updateById: function(req, res, next) {
+		itemModel.findByIdAndUpdate(req.params.itemid,{filename:req.file.filename,brandid:req.body.brandid,ram:req.body.ram,internalstorage:req.body.internalstorage,backcamera:req.body.backcamera,batterybackup:req.body.batterybackup,processortype:req.body.processortype }, function(err, itemInfo){
+
+			if(err)
+				next(err);
+			else {
+				console.log("itemInfo:"+itemInfo)
+				res.json({status:"success", message: "Item updated successfully!!!", data:null});
+			}
+		});
+	},
+	deleteById: function(req, res, next) {
+		itemModel.findByIdAndRemove(req.params.itemid, function(err, itemInfo){
+			if(err)
+				next(err);
+			else {
+				res.json({status:"success", message: "Item deleted successfully!!!", data:null});
+			}
+		});
+	},
     getitems: function(req, res, next) {
 
         itemModel.find().populate('brandid')
