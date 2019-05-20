@@ -10,6 +10,7 @@ const city = require('./routes/city');
 
 const category = require('./routes/category');
 const brand = require('./routes/brand');
+const item = require('./routes/item');
 
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
@@ -52,6 +53,8 @@ app.use('/users', users);
 app.use('/category',category);
 
 app.use('/brand',brand);
+
+app.use('/item',item);
 
 
 app.use('/country',country);
