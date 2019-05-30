@@ -1,8 +1,20 @@
 const itemModel=require('../models/item')		
 module.exports = {
 
+   /* create: function(req, res, next) {
+		itemModel.create({ name: req.body.name, filename:req.body.filename,brandid:req.body.brandid,specification:req.body.specification,description:req.body.description}, function (err, result) {
+				  if (err) 
+				  	next(err);
+				  else
+				  	res.json({status: "success", message: "Item added successfully!!!", data: null});
+				  
+				});
+	},*/
+
     create: function(req, res, next) {
-		itemModel.create({ name: req.body.name, filename:req.file.filename,brandid:req.body.brandid,ram:req.body.ram,internalstorage:req.body.internalstorage,backcamera:req.body.backcamera,batterybackup:req.body.batterybackup,processortype:req.body.processortype }, function (err, result) {
+		const formData = req.body;
+  		console.log('form data', formData);
+		itemModel.insertMany(req.body.my_items, function (err, result) {
 				  if (err) 
 				  	next(err);
 				  else
@@ -18,7 +30,7 @@ module.exports = {
 				next(err);
 			} else{
 				for (let item of items) {
-					itemList.push({id: item._id,name: item.name,filename:item.filename,brandid:item.brandid,ram:item.ram,internalstorage:item.internalstorage,backcamera:item.backcamera,batterybackup:item.batterybackup,processortype:item.processortype});
+					itemList.push({id: item._id,name: item.name,filename:item.filename,brandid:item.brandid,specification:item.specification,description:item.description});
 				}
 				res.json({status:"success", message: "Item list found!!!", data:{items: itemList}});
 							
@@ -27,7 +39,7 @@ module.exports = {
 		});
     },
     updateById: function(req, res, next) {
-		itemModel.findByIdAndUpdate(req.params.itemid,{filename:req.file.filename,brandid:req.body.brandid,ram:req.body.ram,internalstorage:req.body.internalstorage,backcamera:req.body.backcamera,batterybackup:req.body.batterybackup,processortype:req.body.processortype }, function(err, itemInfo){
+		itemModel.findByIdAndUpdate(req.params.itemid,{filename:req.file.filename,brandid:req.body.brandid,specification:req.body.specification,description:req.body.description }, function(err, itemInfo){
 
 			if(err)
 				next(err);

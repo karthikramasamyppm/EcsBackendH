@@ -18,32 +18,16 @@ const ItemSchema = new Schema({
   brandid : { 
     type: Schema.Types.ObjectId, ref: 'Brand'
   }, 
-  ram: {
+  specification: {
 		type: String,
 		trim: true,		
 		required: true,
   },
-  internalstorage: {
+  description: {
 		type: String,
 		trim: true,		
 		required: true,
   },
-  backcamera: {
-		type: String,
-		trim: true,		
-		required: true,
-  },
-  batterybackup: {
-		type: String,
-		trim: true,		
-		required: true,
-  },
-  processortype: {
-		type: String,
-		trim: true,		
-		required: true,
-	},    
-            
 }, 
 {
     timestamps: true
